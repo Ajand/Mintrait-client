@@ -5,17 +5,8 @@ import { ButtonBase, Typography, Avatar } from "@mui/material";
 
 const UserWelcome = ({ displayName }) => {
   return (
-    <div
-      css={css`
-        margin-top: 4em;
-      `}
-    >
-      <Typography
-        css={css`
-          font-size: 3em;
-        `}
-        variant="h4"
-      >
+    <div>
+      <Typography css={css``} variant="h4">
         Hello,{" "}
         <span
           css={(theme) =>
@@ -29,7 +20,6 @@ const UserWelcome = ({ displayName }) => {
       </Typography>
       <Typography
         css={css`
-          font-size: 1.5em;
           max-width: 700px;
         `}
         variant="body1"
@@ -40,7 +30,6 @@ const UserWelcome = ({ displayName }) => {
       </Typography>
       <Typography
         css={css`
-          font-size: 1.5em;
           max-width: 700px;
         `}
         variant="body1"

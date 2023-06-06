@@ -2,12 +2,27 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Container } from "@mui/material";
-import { UserWelcome } from "../molecules";
+import { UserWelcome, NoCollection } from "../molecules";
 
 const Dashboard = () => {
   return (
     <Container>
-      <UserWelcome displayName="Jon Doe" />
+      <div
+        css={css`
+          margin-top: 4em;
+        `}
+      >
+        <UserWelcome displayName="Jon Doe" />
+      </div>
+      <div
+        css={css`
+          display: flex;
+          justify-content: center;
+          margin-top: 5em;
+        `}
+      >
+        <NoCollection />
+      </div>
     </Container>
   );
 };

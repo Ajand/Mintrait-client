@@ -3,6 +3,7 @@ import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
 const darkTheme = createTheme({
   typography: {
     fontFamily: "Dosis",
+    fontSize: 21,
   },
   palette: {
     mode: "dark",
@@ -19,7 +20,7 @@ const darkTheme = createTheme({
     },
     background: {
       default: "#070A52",
-      paper: "#28203F",
+      paper: "#070A52",
       secondary: "#443569",
     },
     error: {
@@ -41,7 +42,7 @@ const darkTheme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          borderRadius: 10,
+          borderRadius: 8,
           boxShadow: "rgb(20 21 33 / 18%) 0px 2px 10px 0px",
         },
       },
@@ -56,6 +57,7 @@ const darkTheme = createTheme({
         root: { borderRadius: "8px !important" },
       },
     },
+    MuiTypography: {},
   },
 });
 
