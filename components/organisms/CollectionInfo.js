@@ -25,7 +25,7 @@ const CollectionInfo = () => {
   return (
     <div
       css={(theme) => css`
-        border-radius: 14px;
+        border-radius: 10px;
         overflow: hidden;
       `}
     >

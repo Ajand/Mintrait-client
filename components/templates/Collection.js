@@ -2,11 +2,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Container, Grid } from "@mui/material";
-import { CollectionInfo, CollectionMenu } from "../organisms";
+import { CollectionInfo, CollectionMenu, Traits } from "../organisms";
 import { useState } from "react";
 
 const Collection = () => {
-  const [selected, setSelected] = useState("tokens");
+  const [selected, setSelected] = useState("traits");
 
   return (
     <Container
@@ -25,8 +25,8 @@ const Collection = () => {
         <Grid item md={3}>
           <CollectionMenu selected={selected} setSelected={setSelected} />
         </Grid>
-        <Grid item md={3}>
-          {selected === "tokens" ? <div>Tokens stuff</div> : <div></div>}
+        <Grid item md={9}>
+          {selected === "tokens" ? <div>Tokens stuff</div> : <Traits />}
         </Grid>
       </Grid>
     </Container>
