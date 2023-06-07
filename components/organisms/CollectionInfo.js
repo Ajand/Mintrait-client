@@ -24,9 +24,8 @@ const CollectionInfo = () => {
 
   return (
     <div
-      css={css`
-        border: 2px solid white;
-        border-radius: 10px;
+      css={(theme) => css`
+        border-radius: 14px;
         overflow: hidden;
       `}
     >
@@ -37,18 +36,17 @@ const CollectionInfo = () => {
       >
         <div
           style={bgGradient}
-          css={css`
+          css={(theme) => css`
             height: 260px;
-            border-bottom: 2px solid white;
             cursor: pointer;
           `}
         ></div>
         <Avatar
           src={logoAddress}
-          css={css`
+          css={(theme) => css`
             width: 160px;
             height: 160px;
-            border: 2px solid white;
+            border: 3px solid ${theme.palette.divider};
             position: absolute;
             top: 180px;
             right: 40px;
@@ -157,9 +155,17 @@ const CollectionInfo = () => {
         <div>
           <Typography variant="subtitle2">
             Contract Address:{" "}
-            {collectionInfo.deployed
-              ? collectionInfo.contractAddress
-              : "Not deployed yet."}
+            <span
+              css={(theme) =>
+                css`
+                  color: ${theme.palette.primary.main};
+                `
+              }
+            >
+              {collectionInfo.deployed
+                ? collectionInfo.contractAddress
+                : "Not deployed yet."}
+            </span>
           </Typography>
         </div>
       </div>
