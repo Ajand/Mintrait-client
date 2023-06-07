@@ -2,14 +2,18 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-import { Dashboard } from "../components/templates";
-
-const DashboardPage = () => {
+const FormRow = ({ children }) => {
   return (
-    <div>
-      <Dashboard />
+    <div
+      css={(theme) =>
+        css`
+          margin-bottom: 1em;
+        `
+      }
+    >
+      {children}
     </div>
   );
 };
 
-export default DashboardPage;
+export default FormRow;

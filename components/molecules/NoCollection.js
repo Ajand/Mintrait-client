@@ -2,8 +2,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Paper, Typography, Button } from "@mui/material";
+import { useRouter } from "next/router";
 
 const NoCollection = () => {
+  const router = useRouter();
+
   return (
     <Paper
       css={css`
@@ -36,7 +39,11 @@ const NoCollection = () => {
           justify-content: center;
         `}
       >
-        <Button variant="contained" color="primary">
+        <Button
+          onClick={() => router.push("/dashboard/collection/create")}
+          variant="contained"
+          color="primary"
+        >
           Create Your First Collection
         </Button>
       </div>

@@ -8,7 +8,7 @@ const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#65CBBF",
+      main: "#66fcf1",
       paper: "#493E7F",
     },
     lavendar: {
@@ -19,8 +19,8 @@ const darkTheme = createTheme({
       main: "#F4D06F",
     },
     background: {
-      default: "#070A52",
-      paper: "#070A52",
+      default: "#0b0c10",
+      paper: "#1f2833",
       secondary: "#443569",
     },
     error: {
