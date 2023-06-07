@@ -1,4 +1,5 @@
 import Dashboard from "./Dashboard";
 import CreateCollection from "./CreateCollection";
+import Collection from "./Collection";
 
-export { Dashboard, CreateCollection };
+export { Dashboard, CreateCollection, Collection };
