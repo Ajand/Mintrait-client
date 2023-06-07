@@ -3,8 +3,44 @@
 import { css } from "@emotion/react";
 import { Container } from "@mui/material";
 import { UserWelcome, NoCollection } from "../molecules";
+import { CollectionsList } from "../organisms";
 
 const Dashboard = () => {
+  const collections = [
+    {
+      id: 1,
+      name: "Bored Ape",
+      symbol: "BAYP",
+      supply: 100,
+      deployed: false,
+      minted: 0,
+    },
+    {
+      id: 2,
+      name: "Bored Ape",
+      symbol: "BAYP",
+      supply: 100,
+      deployed: true,
+      minted: 0,
+    },
+    {
+      id: 3,
+      name: "Bored Ape",
+      symbol: "BAYP",
+      supply: 100,
+      deployed: false,
+      minted: 0,
+    },
+    {
+      id: 4,
+      name: "Bored Ape",
+      symbol: "BAYP",
+      supply: 100,
+      deployed: false,
+      minted: 0,
+    },
+  ];
+
   return (
     <Container>
       <div
@@ -21,7 +57,11 @@ const Dashboard = () => {
           margin-top: 5em;
         `}
       >
-        <NoCollection />
+        {collections.length ? (
+          <CollectionsList collections={collections} />
+        ) : (
+          <NoCollection />
+        )}
       </div>
     </Container>
   );

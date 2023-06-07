@@ -1,3 +1,4 @@
 import CollectionForm from "./CollectionForm";
+import CollectionsList from "./CollectionsList";
 
-export { CollectionForm };
+export { CollectionForm, CollectionsList };

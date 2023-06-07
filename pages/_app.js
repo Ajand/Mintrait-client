@@ -16,7 +16,7 @@ const darkTheme = createTheme({
       light: "#B3A8FF",
     },
     secondary: {
-      main: "#F4D06F",
+      main: "#C5C6C7",
     },
     background: {
       default: "#0b0c10",
