@@ -13,7 +13,7 @@ import {
   MenuItem,
 } from "@mui/material";
 
-const TraitForm = () => {
+const TraitForm = ({ getBack }) => {
   return (
     <Paper>
       <div
@@ -69,6 +69,20 @@ const TraitForm = () => {
           padding: 0.5em 1em;
         `}
       >
+        <Button
+          size="small"
+          variant="text"
+          color="warning"
+          css={css`
+            margin-right: 0.5em;
+          `}
+          onClick={() => {
+            getBack();
+          }}
+        >
+          Cancel
+        </Button>
+
         <Button size="small" variant="contained" color="primary">
           Add
         </Button>

@@ -4,6 +4,7 @@ import CollectionInfo from "./CollectionInfo";
 import CollectionMenu from "./CollectionMenu";
 import TraitForm from "./TraitForm";
 import Traits from "./Traits";
+import Tokens from "./Tokens";
 
 export {
   CollectionForm,
@@ -12,4 +13,5 @@ export {
   CollectionMenu,
   TraitForm,
   Traits,
+  Tokens,
 };
