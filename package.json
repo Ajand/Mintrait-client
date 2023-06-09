@@ -9,16 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.15",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.4",
     "@mui/x-date-pickers": "^6.6.0",
+    "everscale-inpage-provider": "^0.3.61",
+    "everscale-standalone-client": "^2.1.19",
+    "graphql": "^16.6.0",
+    "js-base64": "^3.7.5",
     "moment": "^2.29.4",
     "next": "13.4.4",
     "random-gradient": "^0.0.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-spinners": "^0.13.8",
+    "venom-connect": "^1.0.20"
   },
   "devDependencies": {
     "eslint": "8.42.0",

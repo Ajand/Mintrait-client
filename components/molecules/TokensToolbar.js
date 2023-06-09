@@ -3,8 +3,10 @@
 import { css } from "@emotion/react";
 import { Paper, Divider, Button, Typography, IconButton } from "@mui/material";
 import { FilterList } from "@mui/icons-material";
+import { useRouter } from "next/router";
 
 const TokensToolbar = () => {
+  const router = useRouter();
   return (
     <Paper>
       <div
@@ -15,7 +17,11 @@ const TokensToolbar = () => {
         `}
       >
         <Typography variant="h6">Tokens</Typography>
-        <Button color="primary" size="small">
+        <Button
+          onClick={() => router.push(`${router.asPath}/add-token`)}
+          color="primary"
+          size="small"
+        >
           Add
         </Button>
       </div>

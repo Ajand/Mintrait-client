@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope -- Unaware of jsxImportSource */
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { Collection } from "../../../components/templates";
+import { Collection } from "../../../../components/templates";
 
 const CollectionDetailsPage = () => {
   return (

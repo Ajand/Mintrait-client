@@ -1,4 +1,16 @@
 import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
+import { VenomConnect } from "venom-connect";
+import { ProviderRpcClient } from "everscale-inpage-provider";
+import { EverscaleStandaloneClient } from "everscale-standalone-client";
+import { useEffect, useState } from "react";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  gql,
+} from "@apollo/client";
+
+import apolloClient from "../components/apolloClient";
 
 const darkTheme = createTheme({
   typography: {
@@ -61,12 +73,64 @@ const darkTheme = createTheme({
   },
 });
 
+export const initVenomConnect = async () => {
+  return new VenomConnect({
+    theme: "dark",
+    checkNetworkId: 1002,
+    providersOptions: {
+      venomwallet: {
+        walletWaysToConnect: [
+          {
+            package: ProviderRpcClient,
+
+            packageOptions: {
+              fallback:
+                VenomConnect.getPromise("venomwallet", "extension") ||
+                (() => Promise.reject()),
+              forceUseFallback: true,
+            },
+            packageOptionsStandalone: {
+              fallback: () =>
+                EverscaleStandaloneClient.create({
+                  connection: {
+                    id: 1002,
+                    group: "devnet",
+                    type: "jrpc",
+                    data: {
+                      endpoint: "https://jrpc-devnet.venom.foundation/",
+                    },
+                  },
+                }),
+              forceUseFallback: true,
+            },
+
+            id: "extension",
+            type: "extension",
+          },
+        ],
+        defaultWalletWaysToConnect: ["mobile", "ios", "android"],
+      },
+    },
+  });
+};
+
 function MyApp({ Component, pageProps }) {
+  const [venomConnect, setVenomConnect] = useState(null);
+  const init = async () => {
+    const _venomConnect = await initVenomConnect();
+    setVenomConnect(_venomConnect);
+  };
+  useEffect(() => {
+    init();
+  }, []);
+
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <ApolloProvider client={apolloClient}>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <Component {...pageProps} venomConnect={venomConnect} />
+      </ThemeProvider>
+    </ApolloProvider>
   );
 }
 
