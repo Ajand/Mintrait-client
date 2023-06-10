@@ -21,18 +21,13 @@ const COMPLETE_PROFILE = gql`
     $avatar: String
   ) {
     completeProfile(displayName: $displayName, bio: $bio, avatar: $avatar) {
-      address
-      avatar
-      bio
-      id
+      _id
     }
   }
 `;
 
 const CompleteProfile = ({ refetch }) => {
   const avatar = useImageUpload();
-
-  console.log(avatar);
 
   const [completeProfile] = useMutation(COMPLETE_PROFILE);
 

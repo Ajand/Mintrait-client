@@ -1,7 +1,7 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
-const GRAPHQL_SERVER = "http://localhost:4000/";
+const GRAPHQL_SERVER = "https://mintrait.com/api";
 
 const httpLink = createHttpLink({
   uri: GRAPHQL_SERVER,

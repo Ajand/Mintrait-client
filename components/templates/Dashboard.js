@@ -51,7 +51,12 @@ const Dashboard = () => {
 
     if (data && !data.me.displayName) {
       return (
-        <div>
+        <div
+          css={css`
+            padding-top: 1.5em;
+            margin-top: 4em;
+          `}
+        >
           <CompleteProfile refetch={refetch} />
         </div>
       );
