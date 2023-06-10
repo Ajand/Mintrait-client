@@ -4,6 +4,7 @@ import CollectionTypeItem from "./CollectionTypeItem";
 import TokensToolbar from "./TokensToolbar";
 import Footer from "./Footer";
 import Loading from "./Loading";
+import AvatarSelector from "./AvatarSelector";
 
 export {
   UserWelcome,
@@ -12,4 +13,5 @@ export {
   Footer,
   TokensToolbar,
   Loading,
+  AvatarSelector,
 };
