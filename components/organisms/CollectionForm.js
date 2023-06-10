@@ -28,7 +28,7 @@ const CREATE_COLLECTION = gql`
       symbol: $symbol
       royalty: $royalty
     ) {
-      id
+      _id
     }
   }
 `;
@@ -216,7 +216,7 @@ const CollectionForm = ({ create }) => {
               },
             })
               .then((r) => {
-                const id = r.data.createCollection.id;
+                const id = r.data.createCollection._id;
                 router.push(`/dashboard/collection/${id}`);
               })
               .catch((err) => {
