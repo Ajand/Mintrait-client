@@ -14,7 +14,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.4",
-    "@mui/x-date-pickers": "^6.6.0",
+    "@mui/x-date-pickers": "^6.7.0",
     "axios": "^1.4.0",
     "everscale-inpage-provider": "^0.3.61",
     "everscale-standalone-client": "^2.1.19",

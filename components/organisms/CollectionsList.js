@@ -46,31 +46,29 @@ const CollectionsList = ({ collections }) => {
           <TableRow>
             <TableCell>Name</TableCell>
             <TableCell align="center">Symbol</TableCell>
-            <TableCell align="center">Supply</TableCell>
             <TableCell align="center">Status</TableCell>
-            <TableCell align="right">Minted</TableCell>
+            <TableCell align="right">Royalty</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {collections.map((collection) => (
             <TableRow
-              key={collection.id}
+              key={collection._id}
               sx={{
                 "&:last-child td, &:last-child th": { border: 0 },
                 "&:hover": { background: "#1f2833" },
                 cursor: "pointer",
               }}
               onClick={() =>
-                router.push(`/dashboard/collection/${collection.id}`)
+                router.push(`/dashboard/collection/${collection._id}`)
               }
             >
               <TableCell component="th" scope="row">
                 {collection.name}
               </TableCell>
               <TableCell align="center">{collection.symbol}</TableCell>
-              <TableCell align="center">{collection.supply}</TableCell>
               <TableCell align="center">
-                {collection.deployed ? (
+                {collection.contractAddress ? (
                   <Chip label="Deployed" color="primary" />
                 ) : (
                   <Chip
@@ -80,7 +78,7 @@ const CollectionsList = ({ collections }) => {
                   />
                 )}
               </TableCell>
-              <TableCell align="right">{collection.minted}</TableCell>
+              <TableCell align="right">{collection.royalty}%</TableCell>
             </TableRow>
           ))}
         </TableBody>

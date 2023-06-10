@@ -13,6 +13,25 @@ import {
 import { useState } from "react";
 import { CollectionTypeItem } from "../molecules";
 import { useRouter } from "next/router";
+import { useMutation, gql } from "@apollo/client";
+
+const CREATE_COLLECTION = gql`
+  mutation CreateCollection(
+    $name: String!
+    $description: String!
+    $symbol: String!
+    $royalty: Float!
+  ) {
+    createCollection(
+      name: $name
+      description: $description
+      symbol: $symbol
+      royalty: $royalty
+    ) {
+      id
+    }
+  }
+`;
 
 const collectionVariant = [
   {
@@ -21,14 +40,21 @@ const collectionVariant = [
     value: "tip4",
   },
   {
-    label: "TIP 1155",
-    description: `In this variant you can have multiple copies of a token with the same ID`,
+    label: "VEP 1155 - soon",
+    description: `In this variant you can have both NFTs and normal Tokens`,
     value: "tip1155",
   },
 ];
 
 const CollectionForm = ({ create }) => {
   const router = useRouter();
+
+  const [collectionName, setCollectionName] = useState("");
+  const [description, setDescription] = useState("");
+  const [royalty, setRoyalty] = useState("0");
+  const [symbol, setSymbol] = useState("");
+
+  const [createCollection] = useMutation(CREATE_COLLECTION);
 
   const [collectionInfo, setSI] = useState({
     variant: "tip4",
@@ -47,6 +73,13 @@ const CollectionForm = ({ create }) => {
       return <Typography variant="h6">Edit the collection</Typography>;
     }
   };
+
+  const disabled =
+    !collectionName ||
+    !symbol ||
+    !description ||
+    isNaN(royalty) ||
+    Number(royalty) > 100;
 
   return (
     <Paper
@@ -81,6 +114,7 @@ const CollectionForm = ({ create }) => {
             {collectionVariant.map((variant, i) => (
               <Grid item md={6} key={variant.label}>
                 <CollectionTypeItem
+                  disabled={i == 1}
                   variant={variant}
                   selected={collectionInfo.variant === variant.value}
                   onSelect={() => {
@@ -106,6 +140,9 @@ const CollectionForm = ({ create }) => {
               label="Collection Name"
               fullWidth
               variant="outlined"
+              name="name"
+              value={collectionName}
+              onChange={(e) => setCollectionName(e.target.value)}
             />
           </Grid>
           <Grid item md={6}>
@@ -114,6 +151,9 @@ const CollectionForm = ({ create }) => {
               label="Collection Symbol"
               fullWidth
               variant="outlined"
+              name="symbol"
+              value={symbol}
+              onChange={(e) => setSymbol(e.target.value)}
             />
           </Grid>
           <Grid item md={12}>
@@ -122,6 +162,28 @@ const CollectionForm = ({ create }) => {
               label="Collection Description"
               fullWidth
               variant="outlined"
+              multiline
+              name="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </Grid>
+          <Grid item md={12}>
+            <TextField
+              autoComplete="off"
+              label="Royalty (%)"
+              fullWidth
+              name="royalty"
+              value={royalty}
+              onChange={(e) => setRoyalty(e.target.value)}
+              error={isNaN(royalty) || Number(royalty) > 100}
+              helperText={
+                isNaN(royalty)
+                  ? "Royalty must be a number"
+                  : Number(royalty) > 100
+                  ? "Royalty must be more lest 100%"
+                  : ""
+              }
             />
           </Grid>
         </Grid>
@@ -143,7 +205,28 @@ const CollectionForm = ({ create }) => {
         >
           Cancel
         </Button>
-        <Button>Create</Button>
+        <Button
+          onClick={() => {
+            createCollection({
+              variables: {
+                name: collectionName,
+                symbol,
+                description,
+                royalty: Number(royalty),
+              },
+            })
+              .then((r) => {
+                const id = r.data.createCollection.id;
+                router.push(`/dashboard/collection/${id}`);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }}
+          disabled={disabled}
+        >
+          Create
+        </Button>
       </div>
     </Paper>
   );

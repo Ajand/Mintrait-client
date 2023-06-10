@@ -1,5 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope -- Unaware of jsxImportSource */
 /** @jsxImportSource @emotion/react */
+import { useMutation, gql } from "@apollo/client";
 import { css } from "@emotion/react";
 import {
   Paper,
@@ -12,8 +13,30 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
+import { useState } from "react";
 
-const TraitForm = ({ getBack }) => {
+const ADD_TRAIT = gql`
+  mutation AddTrait(
+    $collectionId: String!
+    $traitName: String!
+    $variant: String!
+  ) {
+    addTrait(
+      collectionId: $collectionId
+      traitName: $traitName
+      variant: $variant
+    ) {
+      _id
+    }
+  }
+`;
+
+const TraitForm = ({ getBack, collection, refetch }) => {
+  const [traitName, setTraitName] = useState("");
+  const [variant, setVariant] = useState("string");
+
+  const [addTrait] = useMutation(ADD_TRAIT);
+
   return (
     <Paper>
       <div
@@ -39,6 +62,8 @@ const TraitForm = ({ getBack }) => {
             fullWidth
             variant="outlined"
             label="Trait Name"
+            value={traitName}
+            onChange={(e) => setTraitName(e.target.value)}
           />
         </div>
         <div>
@@ -47,15 +72,16 @@ const TraitForm = ({ getBack }) => {
             <Select
               labelId="traitType"
               id="traitType"
-              value="string"
+              value={variant}
               label="Trait Type"
-              onChange={() => {}}
+              onChange={(e) => {
+                setVariant(e.target.value);
+              }}
             >
               <MenuItem value="string">String</MenuItem>
               <MenuItem value="boost-number">Boost Number</MenuItem>
               <MenuItem value="boost-percentage">Boost Percentage</MenuItem>
               <MenuItem value="number">Number</MenuItem>
-              <MenuItem value="date">Date</MenuItem>
             </Select>
           </FormControl>
         </div>
@@ -83,7 +109,24 @@ const TraitForm = ({ getBack }) => {
           Cancel
         </Button>
 
-        <Button size="small" variant="contained" color="primary">
+        <Button
+          disabled={!traitName}
+          onClick={() => {
+            addTrait({
+              variables: { traitName, variant, collectionId: collection._id },
+            })
+              .then((r) => {
+                refetch();
+                getBack();
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }}
+          size="small"
+          variant="contained"
+          color="primary"
+        >
           Add
         </Button>
       </div>

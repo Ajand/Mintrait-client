@@ -11,7 +11,7 @@ const Loading = () => {
     <div
       css={css`
         width: 90vw;
-        height: 90vh;
+        height: 86.5vh;
         display: flex;
         justify-content: center;
         align-items: center;

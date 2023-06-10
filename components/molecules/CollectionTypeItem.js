@@ -3,7 +3,7 @@
 import { css } from "@emotion/react";
 import { ButtonBase, Typography } from "@mui/material";
 
-const CollectionTypeItem = ({ variant, selected, onSelect }) => {
+const CollectionTypeItem = ({ variant, selected, onSelect, disabled }) => {
   return (
     <div
       css={(theme) => css`
@@ -12,9 +12,11 @@ const CollectionTypeItem = ({ variant, selected, onSelect }) => {
           : `1px solid ${theme.palette.divider}`};
         border-radius: 0.75em;
         overflow: hidden;
+        ${disabled ? `color: #a8a8a8;` : ""}
+        ${disabled ? `cursor: not-allowed;` : ""}
       `}
     >
-      <ButtonBase onClick={onSelect}>
+      <ButtonBase disabled={disabled} onClick={onSelect}>
         <div
           css={css`
             padding: 0.75em;

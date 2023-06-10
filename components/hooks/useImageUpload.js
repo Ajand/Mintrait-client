@@ -6,6 +6,7 @@ const useImageUpload = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const [fileAddress, setFileAddress] = useState("");
+  const [fileMimeType, setFileMimeType] = useState("");
 
   useEffect(() => {
     if (file) {
@@ -14,6 +15,7 @@ const useImageUpload = () => {
       const upload = async () => {
         try {
           const fileCid = await uploadFile(file);
+          setFileMimeType(file.type);
           setImageUrl(ipfsUrlResolver(fileCid));
           setFileAddress(ipfsAddressResolver(fileCid));
           setIsUploading(false);
@@ -50,6 +52,7 @@ const useImageUpload = () => {
     selectImage,
     remove,
     fileAddress,
+    fileMimeType,
   };
 };
 

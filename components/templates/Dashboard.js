@@ -2,8 +2,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Container } from "@mui/material";
-import { UserWelcome, NoCollection, Loading } from "../molecules";
-import { CollectionsList, CompleteProfile } from "../organisms";
+import { UserWelcome, NoCollection, Loading, Footer } from "../molecules";
+import { CollectionsList, CompleteProfile, Header } from "../organisms";
 import { useMe } from "../hooks";
 
 const collections = [
@@ -74,7 +74,7 @@ const Dashboard = () => {
           `}
         >
           {collections.length ? (
-            <CollectionsList collections={collections} />
+            <CollectionsList collections={data.me.collections} />
           ) : (
             <NoCollection />
           )}
@@ -83,6 +83,18 @@ const Dashboard = () => {
     );
   };
 
-  return <Container>{renderContent()}</Container>;
+  return (
+    <div>
+      <Header />
+      <Container
+        css={css`
+          min-height: 76.5vh;
+        `}
+      >
+        {renderContent()}
+      </Container>
+      <Footer />
+    </div>
+  );
 };
 export default Dashboard;

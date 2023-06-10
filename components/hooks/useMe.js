@@ -3,17 +3,27 @@ import { gql, useQuery } from "@apollo/client";
 const ME = gql`
   query me {
     me {
-      id
+      _id
       address
       avatar
       bio
       displayName
+      collections {
+        _id
+        contractAddress
+        cover
+        description
+        logo
+        name
+        royalty
+        symbol
+        variant
+      }
     }
   }
 `;
 
 const useMe = () => {
-  console.log("??");
   const me = useQuery(ME);
   return me;
 };

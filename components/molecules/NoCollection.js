@@ -29,8 +29,8 @@ const NoCollection = () => {
           `}
           variant="body1"
         >
-          You don't have any collection yet. Create your first collection so you
-          can mint your first NFT.
+          You don&apos;t have any collection yet. Create your first collection
+          so you can mint your first NFT.
         </Typography>
       </div>
       <div

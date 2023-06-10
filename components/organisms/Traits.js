@@ -7,16 +7,23 @@ import { useState } from "react";
 import TraitForm from "./TraitForm";
 import TraitsList from "./TraitsList";
 
-const Traits = () => {
+const Traits = ({ refetch, collection }) => {
   const [isAdding, setIsAdding] = useState(false);
 
   return (
     <Grid spacing>
       <Grid item md={12}>
         {isAdding ? (
-          <TraitForm getBack={() => setIsAdding(false)} />
+          <TraitForm
+            collection={collection}
+            refetch={refetch}
+            getBack={() => setIsAdding(false)}
+          />
         ) : (
-          <TraitsList goAdding={() => setIsAdding(true)} />
+          <TraitsList
+            collection={collection}
+            goAdding={() => setIsAdding(true)}
+          />
         )}
       </Grid>
     </Grid>

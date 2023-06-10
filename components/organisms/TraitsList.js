@@ -15,8 +15,15 @@ import {
   IconButton,
 } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
+import { useState } from "react";
 
-const TraitsList = ({ goAdding }) => {
+const TraitsList = ({ goAdding, collection }) => {
+  console.log(collection);
+
+  const [selectedCollection, setSelectedCollection] = useState("");
+
+  console.log(selectedCollection);
+
   return (
     <Paper>
       <div
@@ -39,55 +46,51 @@ const TraitsList = ({ goAdding }) => {
               border-right: 1px solid ${theme.palette.divider};
             `}
           >
-            <ListItem
-              css={(theme) => css`
-                border-left: 3px solid ${theme.palette.primary.main};
-              `}
-              secondaryAction={
-                <>
-                  <IconButton
-                    css={css`
-                      margin-right: 0.15em;
-                    `}
-                  >
-                    <Edit
+            {collection.traits.map((trait) => (
+              <ListItem
+                key={trait._id}
+                css={(theme) => css`
+                  border-left: 3px solid
+                    ${selectedCollection === trait._id
+                      ? theme.palette.primary.main
+                      : "inherit"};
+                `}
+                secondaryAction={
+                  <>
+                    <IconButton
                       css={css`
-                        width: 20px;
-                        height: 20px;
+                        margin-right: 0.15em;
                       `}
-                    />
-                  </IconButton>
-                  <IconButton>
-                    <Delete
-                      css={css`
-                        width: 20px;
-                        height: 20px;
-                      `}
-                    />
-                  </IconButton>
-                </>
-              }
-              disablePadding
-            >
-              <ListItemButton>
-                <ListItemText primary="Background" secondary="String" />
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemText primary="Background" secondary="String" />
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemText primary="Background" secondary="String" />
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemText primary="Background" secondary="String" />
-              </ListItemButton>
-            </ListItem>
+                    >
+                      <Edit
+                        css={css`
+                          width: 20px;
+                          height: 20px;
+                        `}
+                      />
+                    </IconButton>
+                    <IconButton>
+                      <Delete
+                        css={css`
+                          width: 20px;
+                          height: 20px;
+                        `}
+                      />
+                    </IconButton>
+                  </>
+                }
+                disablePadding
+              >
+                <ListItemButton
+                  onClick={() => setSelectedCollection(trait._id)}
+                >
+                  <ListItemText
+                    primary={trait.name}
+                    secondary={trait.variant}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
           </List>
         </Grid>
       </Grid>

@@ -25,7 +25,7 @@ const TokensToolbar = () => {
           Add
         </Button>
       </div>
-      <Divider />
+      {/*<Divider />
       <div
         css={css`
           padding: 0.5em 1em;
@@ -57,8 +57,8 @@ const TokensToolbar = () => {
               `}
             />
           </IconButton>
-        </div>
-      </div>
+  </div>
+      </div>*/}
     </Paper>
   );
 };
